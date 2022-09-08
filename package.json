@@ -1,6 +1,5 @@
 {
   "name": "flashback",
-  "homepage": "https://glebov-evgeny.github.io/flashback",
   "version": "0.1.0",
   "private": true,
   "scripts": {
