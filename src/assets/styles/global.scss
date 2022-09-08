@@ -1,0 +1,60 @@
+:root {
+  // Цвета
+  --color-black: #000000;
+  --color-black-light: #363232;
+
+  --color-red: #FA2828;
+  --color-red-light: #FF5252;
+
+  --color-brown: #988F8F;
+
+  --color-gray: #C4C4C4;
+  --color-gray-dark: #4D4747;
+  --color-gray-light: #E5E5E5;
+
+  --color-white: #FFFFFF;
+}
+
+html {
+  font-size: 10px;
+  color: var(--color-white);
+  min-height: 100vh;
+
+  ::-webkit-scrollbar {
+    width: .8rem;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-black);
+    border-radius: .4rem;
+    height: 32rem;
+
+  }
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  background-color: var(--color-black-light);
+
+}
+
+.container {
+  max-width: 192rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.main{
+  min-height: calc(100vh - 8rem);
+  padding: 3rem 0;
+  &__title{
+    font-weight: 700;
+    font-size: 2.4rem;
+    margin-bottom: 2rem;
+  }
+}

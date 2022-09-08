@@ -1,0 +1,16 @@
+.header {
+  background-color: var(--color-red);
+  box-shadow: 0 .8rem .7rem  rgba(0, 0, 0, 0.28);
+  &__container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 4rem;
+  }
+
+  &__title{
+    font-size: 2rem;
+    text-transform: uppercase;
+    color: var(--color-black);
+  }
+}

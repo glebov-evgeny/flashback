@@ -1,0 +1,29 @@
+.form{
+  display: flex;
+  flex-direction: column;
+  max-width: 35rem;
+  margin-bottom: 2rem;
+  &__title{
+    font-size: 2rem;
+    margin-bottom: 1rem
+  };
+  &__input{
+    font-size: 1.6rem;
+    min-height: 4rem;
+    border-radius: 0.5rem;
+    outline: none;
+    padding: 0 1rem;            
+    margin-bottom: 1rem;
+  }
+  &__button{
+    cursor: pointer;
+    min-height: 4rem;
+    background: var(--color-gray-dark);
+    color: var(--color-white);
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    border: none;
+    outline: none;
+    border-radius: .5rem;
+  }
+}
