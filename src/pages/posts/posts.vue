@@ -1,9 +1,16 @@
 <template>
   <div class="container">
     <h1 class="main__title">Cтраница с данными</h1>
+    <div class="main__filter" v-if="posts.length > 0">
+      <h1 class="main__subtitle">Фильтр:</h1>
+      <BaseSelect
+        v-model="selectedSort"
+        :options="selectedOptions"
+      />
+    </div>
 
     <PostList
-        :posts="posts"
+        :posts="sortedPosts"
         @remove="removePost"
         v-if="!loading"
     />
@@ -43,7 +50,12 @@ export default {
     return{
       posts: [],
       popupIsOpen: false,
-      loading: true
+      loading: true,
+      selectedSort: '',
+      selectedOptions: [
+        {value:'title', name: 'По названию'},
+        {value:'body', name: 'По описанию'}
+      ]
     }
   },
   methods: {
@@ -73,51 +85,10 @@ export default {
   mounted() {
     this.fetchPosts()
   },
+  computed: {
+    sortedPosts() {
+      return [...this.posts].sort((a, b) => a[this.selectedSort]?.localeCompare(b[this.selectedSort]))
+    }
+  }
 };
 </script>
-
-<style scoped lang="scss">
-.loader{
-  width: 100px;
-  height: 100px;
-  border-radius: 100%;
-  position: relative;
-  margin: 0 auto;
-}
-#loader-1:before, #loader-1:after{
-  content: "";
-  position: absolute;
-  top: -10px;
-  left: -10px;
-  width: 100%;
-  height: 100%;
-  border-radius: 100%;
-  border: 10px solid transparent;
-  border-top-color: #3498db;
-}
-
-#loader-1:before{
-  z-index: 100;
-  animation: spin 1s infinite;
-}
-
-#loader-1:after{
-  border: 10px solid #ccc;
-}
-
-@keyframes spin{
-  0%{
-    -webkit-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-
-  100%{
-    -webkit-transform: rotate(360deg);
-    -ms-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
-</style>
