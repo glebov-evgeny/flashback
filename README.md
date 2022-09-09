@@ -1,3 +1,3 @@
 # vue-test
 
-project for testing
+Project for testing.
