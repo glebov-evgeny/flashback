@@ -1,21 +1,19 @@
 <template>
   <form class="form" @submit.prevent>
       <h3 class="form__title">Добавить новость:</h3>
-      <input
-        type="text"
+      <BaseInput
         class="form__input"
         v-model="post.title"
         placeholder="Заголовок"/>
-      <input
-        type="text"
+      <BaseInput
         class="form__input"
         v-model="post.description"
         placeholder="Описание"/>
-      <button 
+      <BaseButton
+        class="button form__button"
         type="submit"
-        class="form__button"
         @click="createPost"
-        >Создать</button>
+        >Создать</BaseButton>
     </form>
 </template>
 
@@ -35,11 +33,13 @@ export default {
   },
   methods:{
     createPost(){
-      this.post.id = Date.now();
-      this.$emit('createPost', this.post)
-      this.post = {
-        title: '',
-        description: ''
+      if(this.post.title !== '' && this.post.description !== '' ){
+        this.post.id = Date.now();
+        this.$emit('createPost', this.post)
+        this.post = {
+          title: '',
+          description: ''
+        }
       }
     }
   },

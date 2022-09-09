@@ -1,7 +1,14 @@
 <template>
   <div class="post">
-    <p class="post__text"><strong>Название:</strong> {{post.title}}</p> 
-    <p class="post__text"><strong>Описаине:</strong> {{post.description}}</p> 
+    <div class="post__block">
+      <p class="post__text"><strong>Название:</strong> {{post.title}}</p>
+      <p class="post__text"><strong>Описаине:</strong> {{post.description}}</p>
+    </div>
+    <div class="post__btns">
+      <BaseButton
+          @click="$emit('remove', post)"
+      >Удалить</BaseButton>
+    </div>
   </div>
 </template>
 
@@ -10,6 +17,9 @@ import "./PostItem.scss";
 
 export default {
   name: "PostItem",
+  components:{
+
+  },
   props: {
     post: {
       type: Object,

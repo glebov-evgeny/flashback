@@ -1,5 +1,13 @@
 <template>
-  <PostItem v-for="post in posts" :key="post.id" :post="post"/>
+  <div v-if="posts.length > 0">
+    <PostItem
+        v-for="post in posts"
+        :key="post.id"
+        :post="post"
+        @remove="$emit('remove', post)"
+    />
+  </div>
+  <h2 v-else class="main__title">Упс... всё закончилось.</h2>
 </template>
 
 <script>

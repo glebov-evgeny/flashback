@@ -1,9 +1,16 @@
 .post{
+  display: flex;
+  flex-direction: column;
   padding: 2rem;
   border-radius: .5rem;
   background: var(--color-gray);
   margin-bottom: 1rem;
   transition: .3s;
+  @media (min-width: 768px) {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
   &:not(:last-child) {
     margin-bottom: 1.6rem;
   }
@@ -13,6 +20,12 @@
   &__text{
     font-size: 1.8rem;
     color: var(--color-black);
+  }
+  &__btns{
+    margin-top: 1rem;
+    @media (min-width: 768px) {
+      margin: 0 0 0 1rem;
+    }
   }
 }
 

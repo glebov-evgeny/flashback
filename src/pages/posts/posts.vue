@@ -1,8 +1,13 @@
 <template>
   <div class="container">
     <h1 class="main__title">Cтраница с данными</h1>
-    <PostForm @createPost="createPost"/>
-    <PostList :posts="posts" />
+    <PostForm
+        @createPost="createPost"
+    />
+    <PostList
+        :posts="posts"
+        @remove="removePost"
+    />
   </div>
 </template>
 
@@ -45,6 +50,9 @@ export default {
   methods: {
     createPost(post){
       this.posts.push(post)
+    },
+    removePost(post) {
+      this.posts = this.posts.filter(p => p.id !== post.id)
     }
   }
 };
