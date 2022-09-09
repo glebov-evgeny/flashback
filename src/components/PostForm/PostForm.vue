@@ -33,7 +33,7 @@ export default {
   },
   methods:{
     createPost(){
-      if(this.post.title !== '' && this.post.description !== '' ){
+      if(this.post.title !== '' && this.post.body !== '' ){
         this.post.id = Date.now();
         this.$emit('createPost', this.post)
         this.post = {
@@ -43,8 +43,5 @@ export default {
       }
     }
   },
-  computed: {
-   
-  }
 };
 </script>
