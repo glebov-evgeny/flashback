@@ -8,6 +8,8 @@
 
   --color-brown: #988F8F;
 
+  --color-coral: #009a89;
+
   --color-gray: #C4C4C4;
   --color-gray-dark: #4D4747;
   --color-gray-light: #E5E5E5;
@@ -67,5 +69,10 @@ body {
     padding: 1rem 2rem;
     background-color: var(--color-red);
     color: var(--color-white);
+  }
+  &__button{
+    display: flex;
+    align-items: center;
+    margin: 3rem auto;
   }
 }

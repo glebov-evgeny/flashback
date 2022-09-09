@@ -2,7 +2,7 @@
   <div class="post">
     <div class="post__block">
       <p class="post__text"><strong>Название:</strong> {{post.title}}</p>
-      <p class="post__text"><strong>Описаине:</strong> {{post.description}}</p>
+      <p class="post__text"><strong>Описание:</strong> {{post.body}}</p>
     </div>
     <div class="post__btns">
       <BaseButton
