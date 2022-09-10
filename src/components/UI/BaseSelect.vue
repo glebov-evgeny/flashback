@@ -34,7 +34,9 @@ export default {
 
 <style scoped lang="scss">
 .select{
+  width: 100%;
   min-height: 4rem;
   border-radius: .5rem;
+  font-size: 1.6rem;
 }
 </style>
