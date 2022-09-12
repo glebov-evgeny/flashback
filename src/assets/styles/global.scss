@@ -78,7 +78,7 @@ body {
   &__button{
     display: flex;
     align-items: center;
-    margin: 3rem auto;
+    margin: 2rem 0 3rem;
   }
   &__filter{
     display: flex;
@@ -122,5 +122,8 @@ body {
         background: var(--color-red);
       }
     }
+  }
+  &__observer{
+
   }
 }

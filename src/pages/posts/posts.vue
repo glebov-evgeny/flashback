@@ -18,7 +18,11 @@
             placeholder="Search something"/>
       </div>
     </div>
-
+    <BaseButton
+        class="button main__button"
+        @click="popupOpen"
+        v-if="posts.length > 0"
+    >Добавить</BaseButton>
     <PostList
         :posts="sortedAndSearchedPosts"
         @remove="removePost"
@@ -27,23 +31,24 @@
 
     <BaseLoader v-else/>
 
-    <BaseButton
-        class="button main__button"
-        @click="popupOpen"
-        v-if="posts.length > 0"
-    >Добавить</BaseButton>
 
-    <div class="main__wrapper">
-      <div
-          v-for="currentPage in totalPages"
-          :key="currentPage"
-          class="main__wrapper-tab"
-          :class="{
-            '_isCurrent': page === currentPage
-          }"
-          @click="pageChanged(currentPage)"
-      >{{ currentPage }}</div>
-    </div>
+
+    <div
+        class="main__observer"
+        ref="main__observer"
+    ></div>
+    <!-- Блок с пагинацией -->
+    <!--    <div class="main__wrapper">      -->
+    <!--      <div-->
+    <!--          v-for="currentPage in totalPages"-->
+    <!--          :key="currentPage"-->
+    <!--          class="main__wrapper-tab"-->
+    <!--          :class="{-->
+    <!--            '_isCurrent': page === currentPage-->
+    <!--          }"-->
+    <!--          @click="pageChanged(currentPage)"-->
+    <!--      >{{ currentPage }}</div>-->
+    <!--    </div>-->
 
     <BasePopup
         v-model:show="popupIsOpen" >
@@ -93,9 +98,9 @@ export default {
     removePost(post) {
       this.posts = this.posts.filter(p => p.id !== post.id)
     },
-    pageChanged(currentPage){
-      this.page = currentPage;
-    },
+    // pageChanged(currentPage){
+    //   this.page = currentPage;
+    // },
     popupOpen() {
       this.popupIsOpen = true
     },
@@ -108,7 +113,7 @@ export default {
             _limit: this.limit
           }
         })
-        /* общее количество постов приходящих с jsonplaceholder делим на лимит постов с округлением в большую сторону  */
+        /* общее количество постов приходящих с jsonplaceholder делится на лимит постов с округлением в большую сторону  */
         this.totalPages = Math.ceil(response.headers['x-total-count'] / this.limit)
         this.posts = response.data
         this.loading = false
@@ -117,10 +122,40 @@ export default {
       } finally {
         this.loading = false
       }
+    },
+    async loadMorePosts() {
+      try {
+        this.page +=1;
+
+        const response = await axios.get(`${API_BASE_URL}`, {
+          params: {
+            _page: this.page,
+            _limit: this.limit
+          }
+        })
+        /* общее количество постов приходящих с jsonplaceholder делится на лимит постов с округлением в большую сторону  */
+        this.totalPages = Math.ceil(response.headers['x-total-count'] / this.limit)
+        this.posts = [...this.posts, ...response.data]
+        this.loading = false
+      } catch (e) {
+        alert(`Ошибка: ${e}`)
+      }
     }
   },
   mounted() {
-    this.fetchPosts()
+    this.fetchPosts();
+    const options = {
+      rootMargin: '0px',
+      threshold: 1.0
+    }
+    const callback = (entries, observer) => {
+      if(entries[0].isIntersecting && this.page < this.totalPages){
+        this.loadMorePosts()
+      }
+    };
+    const observer = new IntersectionObserver(callback, options);
+
+    observer.observe(this.$refs.main__observer)
   },
   computed: {
     sortedPosts() {
@@ -131,9 +166,9 @@ export default {
     }
   },
   watch:{
-    page(){
-      this.fetchPosts()
-    }
+    // page(){
+    //   this.fetchPosts()
+    // }
   }
 };
 </script>

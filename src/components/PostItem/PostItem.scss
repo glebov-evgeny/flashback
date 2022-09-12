@@ -8,7 +8,6 @@
   transition: .3s;
   @media (min-width: 768px) {
     flex-direction: row;
-    align-items: flex-start;
     justify-content: space-between;
   }
   &:not(:last-child) {
@@ -22,9 +21,16 @@
     color: var(--color-black);
   }
   &__btns{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-top: 1rem;
     @media (min-width: 768px) {
+      flex-direction: column;
       margin: 0 0 0 1rem;
+      .button:not(:first-child){
+        margin-top: 1rem;
+      }
     }
   }
 }

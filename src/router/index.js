@@ -2,12 +2,18 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import posts from "@/pages/posts/posts";
 import NotFoundPage from "@/pages/NotFoundPage/NotFoundPage";
+import post from "@/pages/post/post";
 
 const routes = [
   {
     path: '/',
     name: 'posts',
     component: posts
+  },
+  {
+    path: '/:id',
+    name: 'postPage',
+    component: post
   },
   {
     path: '/:pathMatch(.*)*',

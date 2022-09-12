@@ -6,6 +6,9 @@
     </div>
     <div class="post__btns">
       <BaseButton
+          @click=" $router.push(`/${post.id}`) "
+      >Открыть</BaseButton>
+      <BaseButton
           @click="$emit('remove', post)"
       >Удалить</BaseButton>
     </div>

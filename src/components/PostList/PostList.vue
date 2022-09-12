@@ -9,7 +9,7 @@
       />
     </transition-group>
   </div>
-  <h2 v-else class="main__title">Упс... всё закончилось.</h2>
+  <h2 v-else class="main__title">Упс... ничего нет.</h2>
 </template>
 
 <script>
